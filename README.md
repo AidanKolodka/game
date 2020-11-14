@@ -15,3 +15,6 @@ Consider joining [our Discord server](https://discord.gg/n4v52uv) for contacting
 
 ## License
 The licenses and legal notices can be found at [SDK LICENSE](LICENSE) and [THIRD PARTY LEGAL NOTICES.](thirdpartylegalnotices.txt)
+
+
+This branch is currently being worked on by Kolo and Lumia to implement the beggar's bazooka into momentum mod. This is NOT part of the actual development of Momentum Mod. (P.S we dont know a lot about c++ so bare with us :))
