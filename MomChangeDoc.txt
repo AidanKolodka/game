@@ -1,0 +1,6 @@
+Creation of the weapon_mom_bazooka.h and weapon_mom_bazooka.cpp files.
+Changed rocketlaucher specific values to bazooka. 
+Added in WEAPON_BAZOOKA into the weapon_shareddefs.h file at line 23.
+Line 198 in weapon_def.cpp added in the WEAPON_BAZOOKA.
+
+Line 121 and 139 added in proper GAMEMODE_BB identifier and gametype text.
