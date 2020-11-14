@@ -387,7 +387,52 @@ bool CGameMode_Defrag::WeaponIsAllowed(WeaponID_t weapon)
            weapon == WEAPON_MACHINEGUN ||
            weapon == WEAPON_KNIFE;
 }
+//Beggars Bazooka gamemode implementation
+//
+//
+void CGameMode_BB::SetGameModeVars()
+{
+    CGameModeBase::SetGameModeVars();
 
+    // RJ-specific |This will also be the same for bazooka|
+    sv_airaccelerate.SetValue(10);
+    sv_accelerate.SetValue(10);
+    sv_maxspeed.SetValue(240);
+    sv_stopspeed.SetValue(100);
+    sv_considered_on_ground.SetValue(2);
+    sv_duck_collision_fix.SetValue(false);
+    sv_ground_trigger_fix.SetValue(false); // MOM_TODO Remove when bounce triggers have been implemented
+}
+
+float CGameMode_BB::GetJumpFactor()
+{
+    return 289.0f;
+}
+
+void CGameMode_BB::OnPlayerSpawn(CMomentumPlayer *pPlayer)
+{
+    CGameModeBase::OnPlayerSpawn(pPlayer);
+
+#ifdef GAME_DLL
+    pPlayer->GiveWeapon(WEAPON_BAZOOKA);
+    pPlayer->GiveWeapon(WEAPON_SHOTGUN);
+#endif
+}
+
+bool CGameMode_BB::WeaponIsAllowed(WeaponID_t weapon)
+{
+    // RJ only allows 3 weapons:
+    return weapon == WEAPON_BAZOOKA ||
+           weapon == WEAPON_SHOTGUN        ||
+           weapon == WEAPON_KNIFE;
+}
+
+bool CGameMode_BB::HasCapability(GameModeHUDCapability_t capability)
+{
+    return capability == GameModeHUDCapability_t::CAP_HUD_KEYPRESS_ATTACK;
+}
+
+//END bazooka implementation
 CGameModeSystem::CGameModeSystem() : CAutoGameSystem("CGameModeSystem")
 {
     m_pCurrentGameMode = new CGameModeBase; // Unknown game mode
@@ -402,6 +447,7 @@ CGameModeSystem::CGameModeSystem() : CAutoGameSystem("CGameModeSystem")
     m_vecGameModes.AddToTail(new CGameMode_Parkour);
     m_vecGameModes.AddToTail(new CGameMode_Conc);
     m_vecGameModes.AddToTail(new CGameMode_Defrag);
+    m_vecGameModes.AddToTail(new CGameMode_BB);
 }
 
 CGameModeSystem::~CGameModeSystem()

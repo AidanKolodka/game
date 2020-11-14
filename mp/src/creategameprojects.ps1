@@ -8,7 +8,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 $ErrorActionPreference= 'silentlycontinue'
 # This is the path to your steamworks dev folder (depo). This should be the folder with hl2.exe inside of it.
 # Your local momentum folder will be sym linked INSIDE this folder as momentum
-$path = "E:\Steamworks\dev\Momentum"
+$path = "D:\MomentumDev"
 
 # Boot arguments
 $hl2exe = Join-Path $path hl2.exe 
@@ -20,7 +20,6 @@ $momentum = [System.IO.Path]::GetFullPath("..\game\momentum") # This is your loc
 $bin = [System.IO.Path]::GetFullPath("..\game\bin")
 cmd /c mklink /D $momentum_sym $momentum
 cmd /c mklink /J $bin $bin_sym # Hard link so visual studio can put the file in the proper place automatically
-
 $data = @"
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">

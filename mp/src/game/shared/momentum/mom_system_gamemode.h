@@ -125,7 +125,6 @@ public:
     bool WeaponIsAllowed(WeaponID_t weapon) override;
     bool HasCapability(GameModeHUDCapability_t capability) override;
 };
-
 class CGameMode_SJ : public CGameModeBase
 {
   public:
@@ -255,7 +254,26 @@ public:
     bool WeaponIsAllowed(WeaponID_t weapon) override;
     bool HasCapability(GameModeHUDCapability_t capability) override;
 };
+//Implementation of the Beggars bazooka game mode
+class CGameMode_BB : public CGameModeBase
+{
+public:
+    GameMode_t GetType() override { return GAMEMODE_BB; }
+    const char* GetStatusString() override { return "Bazooka Jumping"; }
+    const char* GetDiscordIcon() override { return "mom_icon_rj"; }
+    const char* GetMapPrefix() override { return "bb_"; }
+    const char* GetGameModeCfg() override { return "rj.cfg"; }
+    float GetViewScale() override { return 1.0f; }
+    float GetJumpFactor() override;
+    bool CanBhop() override { return false; }
 
+    void SetGameModeVars() override;
+    bool PlayerHasAutoBhop() override { return false; }
+    void OnPlayerSpawn(CMomentumPlayer *pPlayer) override;
+    bool WeaponIsAllowed(WeaponID_t weapon) override;
+    bool HasCapability(GameModeHUDCapability_t capability) override;
+};
+//End of Bazooka gamemode
 class CGameModeSystem : public CAutoGameSystem
 {
 public:
@@ -276,7 +294,7 @@ public:
     /// (convenience method; functionally equivalent to `GetGameMode()->GetType() == eCheck`)
     bool GameModeIs(GameMode_t eCheck) const { return m_pCurrentGameMode->GetType() == eCheck; }
     /// Another convenience method to check if the current game mode is a TF2-based one (RJ || SJ)
-    bool IsTF2BasedMode() const { return GameModeIs(GAMEMODE_RJ) || GameModeIs(GAMEMODE_SJ); }
+    bool IsTF2BasedMode() const { return GameModeIs(GAMEMODE_RJ) || GameModeIs(GAMEMODE_SJ) || GameModeIs(GAMEMODE_BB); }
     /// Another convenience method to check if the current game mode is a CS-based one (Surf || Bhop || KZ || Unknown)
     bool IsCSBasedMode() const { return GameModeIs(GAMEMODE_SURF) || GameModeIs(GAMEMODE_BHOP) ||
                                         GameModeIs(GAMEMODE_KZ) || GameModeIs(GAMEMODE_UNKNOWN); }

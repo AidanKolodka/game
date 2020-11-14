@@ -118,6 +118,7 @@ enum GameMode_t
     GAMEMODE_PARKOUR = 8,
     GAMEMODE_CONC = 9,
     GAMEMODE_DEFRAG = 10,
+    GAMEMODE_BB = 11,
 
     // NOTE NOTE: IF YOU UPDATE THIS, UPDATE MOMENTUM.FGD's "GameTypes" BASECLASS!
     GAMEMODE_COUNT // Should be last
@@ -135,6 +136,7 @@ const char * const g_szGameModes[] = {
     "#MOM_GameType_Parkour",
     "#MOM_GameType_Conc",
     "#MOM_GameType_Defrag"
+    "#MOM_GameType_BB"
 };
 
 // Run Flags
