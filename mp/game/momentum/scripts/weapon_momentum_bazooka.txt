@@ -12,7 +12,7 @@ WeaponData
     "bucket"            "0"
     "bucket_position"   "0"
 
-    "clip_size"         "4"
+    "clip_size"         "3"
 
     "weight"            "25"
 
