@@ -6,7 +6,7 @@ WeaponData
     "PlayerAnimationExtension"  "ak"
     
     // Weapon data is loaded by both the Game and Client DLLs.
-    "printname"         "#MOM_Weapon_bazooka"
+    "printname"         "#MOM_Weapon_Bazooka"
     
     "anim_prefix"      "anim"
     "bucket"            "0"

@@ -38,6 +38,7 @@ void CMomRocket::Spawn()
 
 #ifdef GAME_DLL
     SetModel(g_pWeaponDef->GetWeaponModel(WEAPON_ROCKETLAUNCHER, "rocket"));
+    SetModel(g_pWeaponDef->GetWeaponModel(WEAPON_BAZOOKA, "rocket"));
 
     SetMoveType(MOVETYPE_FLY, MOVECOLLIDE_FLY_CUSTOM);
     AddEFlags(EFL_NO_WATER_VELOCITY_CHANGE);
@@ -66,6 +67,7 @@ void CMomRocket::CreateTrailParticles()
         return;
 
     ParticleProp()->Create(g_pWeaponDef->GetWeaponParticle(WEAPON_ROCKETLAUNCHER, "RocketTrail"), PATTACH_POINT_FOLLOW, "trail");
+    ParticleProp()->Create(g_pWeaponDef->GetWeaponParticle(WEAPON_BAZOOKA, "RocketTrail"), PATTACH_POINT_FOLLOW, "trail");
 }
 
 #else
@@ -73,6 +75,7 @@ void CMomRocket::CreateTrailParticles()
 void CMomRocket::StopTrailSound()
 {
     StopSound(g_pWeaponDef->GetWeaponSound(WEAPON_ROCKETLAUNCHER, "RocketTrail"));
+    StopSound(g_pWeaponDef->GetWeaponSound(WEAPON_BAZOOKA, "RocketTrail"));
 }
 
 void CMomRocket::SpawnRocketSurprise()
@@ -84,6 +87,7 @@ void CMomRocket::SpawnRocketSurprise()
     if (pModelEnt)
     {
         pModelEnt->SetModel(g_pWeaponDef->GetWeaponModel(WEAPON_ROCKETLAUNCHER, "surprise"));
+        pModelEnt->SetModel(g_pWeaponDef->GetWeaponModel(WEAPON_BAZOOKA, "surprise"));
         pModelEnt->AddEffects(EF_NOSHADOW);
         DispatchSpawn(pModelEnt);
         pModelEnt->FollowEntity(this);
@@ -93,6 +97,7 @@ void CMomRocket::SpawnRocketSurprise()
 float CMomRocket::GetDamageAmount()
 {
     return g_pGameModeSystem->GameModeIs(GAMEMODE_RJ) ? 90.0f : 50.0f;
+    return g_pGameModeSystem->GameModeIs(GAMEMODE_BB) ? 90.0f : 50.0f;
 }
 
 void CMomRocket::Destroy()
@@ -107,6 +112,7 @@ void CMomRocket::PlayFizzleSound()
     if (mom_rj_sound_fizzle_enable.GetBool())
     {
         EmitSound(g_pWeaponDef->GetWeaponSound(WEAPON_ROCKETLAUNCHER, "RocketFizzle"));
+        EmitSound(g_pWeaponDef->GetWeaponSound(WEAPON_BAZOOKA, "RocketFizzle"));
     }
 }
 
@@ -134,6 +140,7 @@ void CMomRocket::Explode(trace_t *pTrace, CBaseEntity *pOther)
     // Effect
     CPVSFilter filter(vecOrigin);
     TE_TFExplosion(filter, vecOrigin, pTrace->plane.normal, WEAPON_ROCKETLAUNCHER);
+    TE_TFExplosion(filter, vecOrigin, pTrace->plane.normal, WEAPON_BAZOOKA);
 
     // Damage
     const CTakeDamageInfo info(this, GetOwnerEntity(), vec3_origin, vecOrigin, GetDamage(), GetDamageType());
@@ -194,6 +201,7 @@ CMomRocket *CMomRocket::EmitRocket(const Vector &vecOrigin, const QAngle &vecAng
     if (mom_rj_sound_trail_enable.GetBool())
     {
         pRocket->EmitSound(g_pWeaponDef->GetWeaponSound(WEAPON_ROCKETLAUNCHER, "RocketTrail"));
+        pRocket->EmitSound(g_pWeaponDef->GetWeaponSound(WEAPON_BAZOOKA, "RocketTrail"));
     }
 
     return pRocket;

@@ -80,6 +80,7 @@ public:
     bool IsValidMovementTrace(trace_t &tr);
 
     // Limited bunnyhopping in rocket jumping
+    //Potentially Bazooka jumping as well
     void PreventBunnyHopping();
 
     void CheckWaterJump() override;

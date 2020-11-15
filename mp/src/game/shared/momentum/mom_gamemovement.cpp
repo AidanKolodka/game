@@ -1225,6 +1225,22 @@ void CMomentumGameMovement::PreventBunnyHopping()
 
     mv->m_vecVelocity *= fraction;
 }
+//Bazooka bhop check * Not sure what this entails but am changing just incase*
+#define BB_BUNNYHOP_MAX_SPEED_FACTOR 1.2f
+void CMomentumGameMovement::PreventBunnyHopping()
+{
+    float maxscaledspeed = BB_BUNNYHOP_MAX_SPEED_FACTOR * mv->m_flMaxSpeed;
+    if (maxscaledspeed <= 0.0f)
+        return;
+
+    float speed = mv->m_vecVelocity.Length();
+    if (speed <= maxscaledspeed)
+        return;
+
+    float fraction = maxscaledspeed / speed;
+
+    mv->m_vecVelocity *= fraction;
+}
 
 void CMomentumGameMovement::CheckWaterJump()
 {

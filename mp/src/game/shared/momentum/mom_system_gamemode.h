@@ -260,7 +260,7 @@ class CGameMode_BB : public CGameModeBase
 public:
     GameMode_t GetType() override { return GAMEMODE_BB; }
     const char* GetStatusString() override { return "Bazooka Jumping"; }
-    const char* GetDiscordIcon() override { return "mom_icon_rj"; }
+    //const char* GetDiscordIcon() override { return "mom_icon_rj"; }
     const char* GetMapPrefix() override { return "bb_"; }
     const char* GetGameModeCfg() override { return "rj.cfg"; }
     float GetViewScale() override { return 1.0f; }
