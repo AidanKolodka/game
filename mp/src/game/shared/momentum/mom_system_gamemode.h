@@ -262,7 +262,7 @@ public:
     const char* GetStatusString() override { return "Bazooka Jumping"; }
     //const char* GetDiscordIcon() override { return "mom_icon_rj"; }
     const char* GetMapPrefix() override { return "bb_"; }
-    const char* GetGameModeCfg() override { return "rj.cfg"; }
+    const char* GetGameModeCfg() override { return "bb.cfg"; }
     float GetViewScale() override { return 1.0f; }
     float GetJumpFactor() override;
     bool CanBhop() override { return false; }
@@ -273,7 +273,7 @@ public:
     bool WeaponIsAllowed(WeaponID_t weapon) override;
     bool HasCapability(GameModeHUDCapability_t capability) override;
 };
-//End of Bazooka gamemode
+
 class CGameModeSystem : public CAutoGameSystem
 {
 public:
@@ -293,7 +293,7 @@ public:
     /// Checks if the game mode is the given one.
     /// (convenience method; functionally equivalent to `GetGameMode()->GetType() == eCheck`)
     bool GameModeIs(GameMode_t eCheck) const { return m_pCurrentGameMode->GetType() == eCheck; }
-    /// Another convenience method to check if the current game mode is a TF2-based one (RJ || SJ)
+    /// Another convenience method to check if the current game mode is a TF2-based one (RJ || SJ || BB)
     bool IsTF2BasedMode() const { return GameModeIs(GAMEMODE_RJ) || GameModeIs(GAMEMODE_SJ) || GameModeIs(GAMEMODE_BB); }
     /// Another convenience method to check if the current game mode is a CS-based one (Surf || Bhop || KZ || Unknown)
     bool IsCSBasedMode() const { return GameModeIs(GAMEMODE_SURF) || GameModeIs(GAMEMODE_BHOP) ||
