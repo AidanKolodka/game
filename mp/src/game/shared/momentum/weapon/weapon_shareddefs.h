@@ -39,7 +39,7 @@ static const char *const g_szWeaponNames[WEAPON_MAX] =
     "weapon_momentum_concgrenade",
     "weapon_knife",
     "weapon_momentum_rocketlauncher",
-    "weapon_momentum_stickylauncher"
+    "weapon_momentum_stickylauncher",
     "weapon_momentum_bazooka"
 };
 
