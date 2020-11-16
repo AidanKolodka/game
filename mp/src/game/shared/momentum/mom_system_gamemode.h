@@ -143,6 +143,24 @@ class CGameMode_SJ : public CGameModeBase
     void OnPlayerSpawn(CMomentumPlayer *pPlayer) override;
     bool WeaponIsAllowed(WeaponID_t weapon) override;
 };
+class CGameMode_BB : public CGameModeBase
+{
+public:
+    GameMode_t GetType() override { return GAMEMODE_BB; }
+    const char* GetStatusString() override { return "Bazooka Jumping"; }
+    const char* GetDiscordIcon() override { return "mom_icon_rj"; }
+    const char* GetMapPrefix() override { return "bb_"; }
+    const char* GetGameModeCfg() override { return "bb.cfg"; }
+    float GetViewScale() override { return 1.0f; }
+    float GetJumpFactor() override;
+    bool CanBhop() override { return false; }
+
+    void SetGameModeVars() override;
+    bool PlayerHasAutoBhop() override { return false; }
+    void OnPlayerSpawn(CMomentumPlayer *pPlayer) override;
+    bool WeaponIsAllowed(WeaponID_t weapon) override;
+    bool HasCapability(GameModeHUDCapability_t capability) override;
+};
 
 class CGameMode_Tricksurf : public CGameModeBase
 {
@@ -250,25 +268,6 @@ public:
 
     void SetGameModeVars() override;
     bool PlayerHasAutoBhop() override { return true; }
-    void OnPlayerSpawn(CMomentumPlayer *pPlayer) override;
-    bool WeaponIsAllowed(WeaponID_t weapon) override;
-    bool HasCapability(GameModeHUDCapability_t capability) override;
-};
-//Implementation of the Beggars bazooka game mode
-class CGameMode_BB : public CGameModeBase
-{
-public:
-    GameMode_t GetType() override { return GAMEMODE_BB; }
-    const char* GetStatusString() override { return "Bazooka Jumping"; }
-    //const char* GetDiscordIcon() override { return "mom_icon_rj"; }
-    const char* GetMapPrefix() override { return "bb_"; }
-    const char* GetGameModeCfg() override { return "bb.cfg"; }
-    float GetViewScale() override { return 1.0f; }
-    float GetJumpFactor() override;
-    bool CanBhop() override { return false; }
-
-    void SetGameModeVars() override;
-    bool PlayerHasAutoBhop() override { return false; }
     void OnPlayerSpawn(CMomentumPlayer *pPlayer) override;
     bool WeaponIsAllowed(WeaponID_t weapon) override;
     bool HasCapability(GameModeHUDCapability_t capability) override;
