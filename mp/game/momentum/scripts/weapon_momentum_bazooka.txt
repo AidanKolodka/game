@@ -12,13 +12,13 @@ WeaponData
     "bucket"            "0"
     "bucket_position"   "0"
 
-    "clip_size"         "3"
+    "clip_size"         "4"
 
     "weight"            "25"
 
     "ModelData"
     {
-        "view"  "models/weapons/mom_rocketlauncher/v_mom_rocketlauncher_c.mdl"
+        "view"  "models/weapons/mom_rocketlauncher/v_mom_rocketlauncher.mdl"
         "world" "models/weapons/mom_rocketlauncher/w_mom_rocketlauncher.mdl"
 
         "rocket"    "models/weapons/mom_rocketlauncher/w_missile.mdl"

@@ -27,4 +27,5 @@ class CMomentumBazooka : public CWeaponBaseGun
 
   private:
     bool DualFire() OVERRIDE { return true; }
+
 };

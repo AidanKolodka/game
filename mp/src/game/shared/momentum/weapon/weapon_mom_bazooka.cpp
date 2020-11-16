@@ -22,28 +22,13 @@ END_PREDICTION_DATA();
 LINK_ENTITY_TO_CLASS(weapon_momentum_bazooka, CMomentumBazooka);
 PRECACHE_WEAPON_REGISTER(weapon_momentum_bazooka);
 
-MAKE_TOGGLE_CONVAR(mom_rj_sound_shoot_enable, "1", FCVAR_ARCHIVE | FCVAR_REPLICATED, "Toggles the rocket shooting sound on or off. 0 = OFF, 1 = ON\n");
+MAKE_TOGGLE_CONVAR(mom_bb_sound_shoot_enable, "1", FCVAR_ARCHIVE | FCVAR_REPLICATED, "Toggles the rocket shooting sound on or off. 0 = OFF, 1 = ON\n");
 
-#ifdef GAME_DLL
-static MAKE_TOGGLE_CONVAR_CV(mom_rj_center_fire, "1", FCVAR_ARCHIVE, "If enabled, all rockets will be fired from the center of the screen. 0 = OFF, 1 = ON\n", nullptr,
-    [](IConVar *pVar, const char *pNewVal)
-    {
-        if (g_pMomentumTimer->IsRunning())
-        {
-            Warning("Cannot change rocket firing mode while in a run! Stop your timer to be able to change it.\n");
-            return false;
-        }
-
-        return true;
-    }
-);
-#endif
-
-CMomentumBazooka::CMomentumBazooka()
+CMomentumBazooka::CMomentumBazooka() 
 {
     m_flTimeToIdleAfterFire = 0.8f;
     m_flIdleInterval = 20.0f;
-}
+ }
 
 void CMomentumBazooka::Precache()
 {
@@ -53,28 +38,11 @@ void CMomentumBazooka::Precache()
     UTIL_PrecacheOther("momentum_rocket");
 #endif
 }
-
 //-----------------------------------------------------------------------------
 // Purpose: Return the origin & angles for a projectile fired from the player's gun
 //-----------------------------------------------------------------------------
 void CMomentumBazooka::GetProjectileFireSetup(CMomentumPlayer *pPlayer, Vector vecOffset, Vector *vecSrc, QAngle *angForward)
 {
-#ifdef GAME_DLL
-    static ConVarRef cl_righthand("cl_righthand");
-#else
-    extern ConVar_Validated cl_righthand;
-    static ConVarRef mom_rj_center_fire("mom_rj_center_fire");
-#endif
-
-    if (mom_rj_center_fire.GetBool())
-    {
-        vecOffset.y = 0.0f;
-    }
-    else if (!cl_righthand.GetBool())
-    {
-        vecOffset.y *= -1.0f;
-    }
-
     Vector vecForward, vecRight, vecUp;
     AngleVectors(pPlayer->EyeAngles(), &vecForward, &vecRight, &vecUp);
 
@@ -105,7 +73,7 @@ void CMomentumBazooka::GetProjectileFireSetup(CMomentumPlayer *pPlayer, Vector v
     }
 }
 
-void CMomentumBazooka::PrimaryAttack()
+void CMomentumBazooka::PrimaryAttack() 
 {
     CMomentumPlayer *pPlayer = GetPlayerOwner();
 
@@ -117,12 +85,14 @@ void CMomentumBazooka::PrimaryAttack()
     pPlayer->m_iShotsFired++;
 
     DoFireEffects();
+    
+    ConVarRef mom_rj_sound_shoot_enable("mom_rj_sound_shoot_enable");
 
     if (mom_rj_sound_shoot_enable.GetBool())
     {
         WeaponSound(GetWeaponSound("single_shot"));
     }
-
+    
     SendWeaponAnim(ACT_VM_PRIMARYATTACK);
 
     pPlayer->SetAnimation(PLAYER_ATTACK1);
@@ -153,3 +123,4 @@ void CMomentumBazooka::PrimaryAttack()
     g_pMomentumGhostClient->SendDecalPacket(&rocket);
 #endif
 }
+

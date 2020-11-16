@@ -25,7 +25,7 @@ enum WeaponID_t
     WEAPON_MAX, // number of weapons weapon index
 
     WEAPON_FIRST = WEAPON_PISTOL,
-    WEAPON_LAST = WEAPON_BAZOOKA, //Changed to Bazooka instead of stickybomb
+    WEAPON_LAST = WEAPON_BAZOOKA, //Changed to BAZOOKA instead of STICKYLAUNCHER
 };
 
 static const char *const g_szWeaponNames[WEAPON_MAX] = 
@@ -40,7 +40,7 @@ static const char *const g_szWeaponNames[WEAPON_MAX] =
     "weapon_knife",
     "weapon_momentum_rocketlauncher",
     "weapon_momentum_stickylauncher",
-    "weapon_momentum_bazooka"
+    "weapon_momentum_bazooka",
 };
 
 enum WeaponHudResource_t

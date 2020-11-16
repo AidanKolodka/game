@@ -136,7 +136,7 @@ const char * const g_szGameModes[] = {
     "#MOM_GameType_Parkour",
     "#MOM_GameType_Conc",
     "#MOM_GameType_Defrag",
-    "#MOM_GameType_BB"
+    "#MOM_GameType_BB",
 };
 
 // Run Flags
