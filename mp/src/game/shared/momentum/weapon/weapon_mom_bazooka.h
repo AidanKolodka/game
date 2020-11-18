@@ -24,8 +24,15 @@ class CMomentumBazooka : public CWeaponBaseGun
     WeaponID_t GetWeaponID() const OVERRIDE { return WEAPON_BAZOOKA; }
 
     float DeployTime() const OVERRIDE { return 0.5f; }
+    
+  protected:     
 
+    float INITIAL_LOAD = 1.196f;
+    float CONSECUTIVE_LOAD = 1.04f;
+    float BURST_INTERVAL = 0.24f;
+    float LOAD_TIMING = 0.0f;
+    int LOAD_COUNT = 0;
+    
   private:
     bool DualFire() OVERRIDE { return true; }
-
 };

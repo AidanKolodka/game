@@ -23,12 +23,13 @@ LINK_ENTITY_TO_CLASS(weapon_momentum_bazooka, CMomentumBazooka);
 PRECACHE_WEAPON_REGISTER(weapon_momentum_bazooka);
 
 MAKE_TOGGLE_CONVAR(mom_bb_sound_shoot_enable, "1", FCVAR_ARCHIVE | FCVAR_REPLICATED, "Toggles the rocket shooting sound on or off. 0 = OFF, 1 = ON\n");
-
+    
 CMomentumBazooka::CMomentumBazooka() 
 {
+    m_flTimeWeaponIdle = 1.196f;
     m_flTimeToIdleAfterFire = 0.8f;
     m_flIdleInterval = 20.0f;
- }
+}
 
 void CMomentumBazooka::Precache()
 {
@@ -79,12 +80,7 @@ void CMomentumBazooka::PrimaryAttack()
 
     if (!pPlayer)
         return;
-
-    m_flNextPrimaryAttack = m_flNextSecondaryAttack = gpGlobals->curtime + 0.8f;
-    SetWeaponIdleTime(gpGlobals->curtime + m_flTimeToIdleAfterFire);
-    pPlayer->m_iShotsFired++;
-
-    DoFireEffects();
+        
     
     ConVarRef mom_rj_sound_shoot_enable("mom_rj_sound_shoot_enable");
 

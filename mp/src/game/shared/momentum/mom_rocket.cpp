@@ -96,8 +96,7 @@ void CMomRocket::SpawnRocketSurprise()
 
 float CMomRocket::GetDamageAmount()
 {
-    return g_pGameModeSystem->GameModeIs(GAMEMODE_RJ) ? 90.0f : 50.0f;
-    return g_pGameModeSystem->GameModeIs(GAMEMODE_BB) ? 90.0f : 50.0f;
+    return g_pGameModeSystem->GameModeIs(GAMEMODE_RJ)? 90.0f : 50.0f || g_pGameModeSystem->GameModeIs(GAMEMODE_BB)? 90.0f : 50.0f;
 }
 
 void CMomRocket::Destroy()
